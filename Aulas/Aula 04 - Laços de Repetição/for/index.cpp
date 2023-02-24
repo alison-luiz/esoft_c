@@ -16,6 +16,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "include/conio.h"
 
 main() {
 
@@ -34,9 +35,9 @@ for ( x = 0; (x <=10 && x >= 0); x++) {
 printf("%d \n", x);
 
 // Incrementando de 2 em 2
-int y;
-for ( y = 2; y <= 10; y=y+2) {
-    printf("%d \n", y);
+for ( int y = 2; y <= 10; y=y+2) {
+    textcolor(y);
+    printf("Alison \n");
 }
 
 system("pause");
