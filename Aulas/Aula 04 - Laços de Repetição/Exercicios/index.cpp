@@ -1,10 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <conio.c>
 
 // ler idade entre 18 a 50 anos
 int idade;
 
 int main() {
+
+    textcolor(2);
 
     do {
     printf("Idade entre 18 e 50: ");
