@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <conio.c>
 #include <locale.h>
-#include <math.h>
-#define PI 3.14159265358979323846
 
 main() {
 
