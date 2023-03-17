@@ -4,8 +4,15 @@
 
 
 #include <stdio.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+    
     int primeiro, segundo, soma;
     
     do {
@@ -21,5 +28,5 @@ int main() {
     soma = primeiro + segundo;
     printf("A soma de %d e %d é: %d\n", primeiro, segundo, soma);
     
-    return 0;
+    system("pause");
 }

@@ -1,13 +1,19 @@
 // Solicite 5 números e apresente: O maior, o menor e a média. Obs. Não utilizar laço de repetição
 
 #include <stdio.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+    
     int num1, num2, num3, num4, num5;
     int maior, menor, soma;
     float media;
 
-    // Solicita 5 números ao usuário
     printf("Digite o 1º número: ");
     scanf("%d", &num1);
     printf("Digite o 2º número: ");
@@ -19,7 +25,6 @@ int main() {
     printf("Digite o 5º número: ");
     scanf("%d", &num5);
 
-    // Encontra o maior número
     if (num1 > num2 && num1 > num3 && num1 > num4 && num1 > num5) {
         maior = num1;
     } else if (num2 > num3 && num2 > num4 && num2 > num5) {
@@ -32,7 +37,6 @@ int main() {
         maior = num5;
     }
 
-    // Encontra o menor número
     if (num1 < num2 && num1 < num3 && num1 < num4 && num1 < num5) {
         menor = num1;
     } else if (num2 < num3 && num2 < num4 && num2 < num5) {
@@ -45,14 +49,12 @@ int main() {
         menor = num5;
     }
 
-    // Calcula a média
     soma = num1 + num2 + num3 + num4 + num5;
     media = (float) soma / 5;
 
-    // Apresenta os resultados
     printf("Maior número: %d\n", maior);
     printf("Menor número: %d\n", menor);
     printf("Média dos números: %.2f\n", media);
 
-    return 0;
+    system("pause");
 }

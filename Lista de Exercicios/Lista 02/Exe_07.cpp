@@ -9,13 +9,19 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+    
     char nome[50], sexo;
     int idade;
-    float salario, novo_salario;
+    float salario, novoSalario;
     
-    // solicita os dados do usuário
     printf("Digite o nome: ");
     fgets(nome, 50, stdin);
     printf("Digite a idade: ");
@@ -25,26 +31,24 @@ int main() {
     printf("Digite o salário: ");
     scanf("%f", &salario);
     
-    // realiza o reajuste de acordo com as condições
     if (idade > 50) {
-        novo_salario = salario * 1.35;
+        novoSalario = salario * 1.35;
     } else if (sexo == 'F' && idade <= 24) {
-        novo_salario = salario * 1.18;
+        novoSalario = salario * 1.18;
     } else if (sexo == 'M' && idade <= 27) {
-        novo_salario = salario * 1.175;
+        novoSalario = salario * 1.175;
     } else if (sexo == 'F' && idade >= 25 && idade <= 50) {
-        novo_salario = salario * 1.23;
+        novoSalario = salario * 1.23;
     } else if (sexo == 'M' && idade >= 28 && idade <= 38) {
-        novo_salario = salario * 1.21;
+        novoSalario = salario * 1.21;
     } else if (sexo == 'M' && idade >= 39 && idade <= 50) {
-        novo_salario = salario * 1.23;
+        novoSalario = salario * 1.23;
     } else {
-        novo_salario = salario;
+        novoSalario = salario;
     }
     
-    // apresenta o novo salário com reajuste
     printf("\n%s", nome);
-    printf("Novo salário: %.2f", novo_salario);
+    printf("Novo salário: %.2f", novoSalario);
     
-    return 0;
+    system("pause");
 }

@@ -2,8 +2,15 @@
 // maior ou VALORES IGUAIS.
 
 #include <stdio.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+    
     int valor1, valor2;
 
     printf("Digite o primeiro valor inteiro: ");
@@ -20,5 +27,5 @@ int main() {
         printf("VALORES IGUAIS\n");
     }
 
-    return 0;
+    system("pause");
 }

@@ -3,8 +3,15 @@
 // ou REPROVADO.
 
 #include <stdio.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+
     float nota1, nota2, media, substitutiva;
     char resposta;
 
@@ -34,5 +41,5 @@ int main() {
         printf("REPROVADO\n");
     }
 
-    return 0;
+    system("pause");
 }

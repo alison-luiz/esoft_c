@@ -1,8 +1,15 @@
 // Calcule e apresente a média de 10 números fornecidos pelo usuário, utilizando o laço de repetição FOR
 
 #include <stdio.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+    
    int i, num;
    float soma = 0, media;
    
@@ -17,5 +24,5 @@ int main() {
    
    printf("A media dos numeros digitados eh: %.2f", media);
    
-   return 0;
+    system("pause");
 }

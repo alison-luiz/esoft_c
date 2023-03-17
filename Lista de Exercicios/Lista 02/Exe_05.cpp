@@ -1,8 +1,15 @@
 // Solicite (número inteiro) o mês atual ao usuário e apresente o correspondente mês por extenso.
 
 #include <stdio.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+    
     int mes;
 
     printf("Digite o número do mês atual: ");
@@ -49,5 +56,5 @@ int main() {
             printf("Mês inválido\n");
     }
 
-    return 0;
+    system("pause");
 }

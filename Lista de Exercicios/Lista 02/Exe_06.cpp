@@ -4,8 +4,15 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+    
     char nome1[50], nome2[50];
     int idade1, idade2;
 
@@ -23,5 +30,5 @@ int main() {
         printf("As pessoas possuem a mesma idade.\n");
     }
 
-    return 0;
+    system("pause");
 }

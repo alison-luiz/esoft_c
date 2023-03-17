@@ -2,8 +2,15 @@
 // vertical, todos os números entre o primeiro valor e o segundo. Utilize o laço FOR
 
 #include <stdio.h>
+#include <conio.c>
+#include <locale.h>
 
 int main() {
+
+    system("cls");
+    setlocale(LC_ALL, "Portuguese");
+    textcolor(3);
+    
   int primeiro, segundo, i;
 
   // Solicita dois valores ao usuário
@@ -22,5 +29,5 @@ int main() {
     }
   }
 
-  return 0;
+  system("pause");
 }
