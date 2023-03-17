@@ -1,3 +1,5 @@
+// Solicite um valor inteiro e apresente a mensagem: NÚMERO PAR ou NÚMERO ÍMPAR
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.c>
@@ -9,7 +11,6 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
     textcolor(3);
 
-    // Solicite um valor inteiro e apresente a mensagem: NÚMERO PAR ou NÚMERO ÍMPAR
     int numero;
     printf("Digite um numero: ");
     scanf("%d", &numero);
