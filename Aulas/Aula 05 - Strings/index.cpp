@@ -7,7 +7,7 @@ int main() {
 char nome[40] = "Alison";
 char nome1[40] = "Luiz";
 // Para copiar uma string para outra uso o seguinte código
-//    DESTINHO, ORIGEN
+//    DESTINHO, ORIGEM
 strncpy(nome, nome1, 6);
 printf("%s\n\n\n", nome);
 
