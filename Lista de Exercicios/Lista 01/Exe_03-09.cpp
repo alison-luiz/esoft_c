@@ -13,7 +13,7 @@ main() {
     scanf("%i", &num);
     fflush(stdin);
 
-    // Apresentando o dobro, tripli e metade do número solicitado
+    // Apresentando o dobro, triplo e a metade do número solicitado
     printf("O dobro de %i e: %i\n", num, num * 2);
     printf("O triplo de %i e: %i\n", num, num * 3);
     printf("A metade de %i e: %.2i\n", num, num / 2);
@@ -32,8 +32,8 @@ main() {
     scanf("%f %f", &num3, &num4);
     fflush(stdin);
 
-    float soma = num3 + num4;
     // Apresentando 45% da soma entre os dois números solicitados
+    float soma = num3 + num4;
     printf("45%% da soma de %.2f e %.2f e %.2f\n", num3, num4, soma * 0.45);
 
     float num5, num6;
@@ -41,8 +41,8 @@ main() {
     scanf("%f %f", &num5, &num6);
     fflush(stdin);
 
-    float subtracao = num5 - num6;
     // Apresentando a subtração dos dois números solicitados
+    float subtracao = num5 - num6;
     printf("O resultado da subtração de %.2f por %.2f e %.2f\n", num5, num6, subtracao);
 
     system("pause");
