@@ -23,7 +23,6 @@ float qtdMulherSemFilhosIdade = 0;
 int idadeMaisJovem = 999;
 char nomeMaisJovem[numPessoas];
 int qtdMulherEntrevista = 0;
-float percHomens;
 
 void solicitarDados();
 void exibirDados();
@@ -37,7 +36,6 @@ int main() {
   solicitarDados();
   exibirDados();
 
-  return 0;
 }
 
 void solicitarDados() {
