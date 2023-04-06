@@ -14,6 +14,7 @@
 #include <string.h>
 #include <conio.c>
 #include <time.h>
+#include <ctype.h>
 
 FILE *ArqPalavra;
 #define max 25
@@ -23,30 +24,34 @@ FILE *ArqPalavra;
 char matriz[max][max];
 char palavras[maxSort][20];
 char palavraSelecionada[20];
+char palavra[20];
 
 //========================================================================
 bool openFile();
 void lerPalavras();
 void sortearMatriz();
 void exibirMatriz();
+void inserirPalavra();
+void perguntarPalavra();
 
 //========================================================================
 
 int main() {
 
     system("cls");
-    textcolor(3);
+    textcolor(10);
     srand(time(NULL));
-    
+
     if ( openFile() == 0 ) {
         return 0;
     }
 
     lerPalavras();
     sortearMatriz();
+    inserirPalavra();
     exibirMatriz();
 
-    printf("Palavra selecionada: %s", palavraSelecionada);
+    perguntarPalavra();
 
 }
 
@@ -73,7 +78,23 @@ void lerPalavras() {
     }
     fclose(ArqPalavra);
     strcpy(palavraSelecionada, palavras[rand()%maxSort]);
-    //printf("Palavra selecionada: %s", palavraSelecionada);
+    printf("Palavra selecionada: %s\n", palavraSelecionada);
+}
+
+void inserirPalavra() {
+    int linha = rand() % 25;
+    int coluna = rand() % 25;
+
+    if ( (coluna + strlen(palavraSelecionada)) > 25 ) {
+        coluna -= strlen(palavraSelecionada);
+    }
+
+    printf("Linha: %d Coluna: %d\n\n\n", linha+1, coluna+1);
+
+    for ( int x = 0; x < strlen(palavraSelecionada); x++ ) {
+        matriz[linha][coluna + x] = palavraSelecionada[x];
+    }
+
 }
 
 void sortearMatriz() {
@@ -100,8 +121,37 @@ void sortearMatriz() {
 void exibirMatriz() {
     for ( int x = 0; x < max; x++ ) {
         for ( int y = 0; y < max; y++ ) {
-            printf("%c ", matriz[x][y]);
+            printf("%c  ", matriz[x][y]);
         }
         printf("\n");
     }
+}
+
+void perguntarPalavra() {
+
+    do {
+    printf("\nDigite a palavra (max 20 caracteres): ");
+    gets(palavra);
+    } while ( strlen(palavra) <= 0 || strlen(palavra) >= 20 );
+
+    for ( int x = 0; x < strlen(palavra); x++ ) {
+        palavra[x] = toupper(palavra[x]);
+    }
+
+    int count = 0;
+    for ( int x = 0; x < strlen(palavra); x++ ) {
+        if ( palavra[x] != palavraSelecionada[x] ) {
+            count--;
+        } else {
+            count++;
+        }
+    }
+
+    if ( count == strlen(palavra) ) {
+        printf("Voce acertou!!");
+    } else {
+        printf("Voce errou!!");
+    }
+
+    //printf("contador: %d tam palavra: %d", count, strlen(palavra));
 }
