@@ -39,7 +39,6 @@ void perguntarPalavra();
 int main() {
 
     system("cls");
-    textcolor(10);
     srand(time(NULL));
 
     if ( openFile() == 0 ) {
@@ -82,19 +81,33 @@ void lerPalavras() {
 }
 
 void inserirPalavra() {
-    int linha = rand() % 25;
-    int coluna = rand() % 25;
 
-    if ( (coluna + strlen(palavraSelecionada)) > 25 ) {
-        coluna -= strlen(palavraSelecionada);
+    int metodo = 2;//rand() % 2 + 1;
+
+    int linha = (rand() % 25) + 1;
+    int coluna = (rand() % 25) + 1;
+
+    switch (metodo) {
+    case 1:
+        if ( coluna > strlen(palavraSelecionada) ) {
+            coluna -= strlen(palavraSelecionada);
+        }
+        for ( int x = 0; x < strlen(palavraSelecionada); x++ ) {
+            matriz[linha][coluna + x] = palavraSelecionada[x];
+        }
+        break;
+    case 2:
+        if ( coluna < strlen(palavraSelecionada) ) {
+            coluna += (coluna - strlen(palavraSelecionada)) * -1;
+        }
+        for ( int x = 0; x < strlen(palavraSelecionada); x++ ) {
+            matriz[linha][coluna - x] = palavraSelecionada[x];
+        }
+        break;
+    default:
+        break;
     }
-
-    printf("Linha: %d Coluna: %d\n\n\n", linha+1, coluna+1);
-
-    for ( int x = 0; x < strlen(palavraSelecionada); x++ ) {
-        matriz[linha][coluna + x] = palavraSelecionada[x];
-    }
-
+    printf("Metodo: %d Linha: %d Coluna: %d\n\n\n", metodo, linha, coluna);
 }
 
 void sortearMatriz() {
@@ -121,6 +134,7 @@ void sortearMatriz() {
 void exibirMatriz() {
     for ( int x = 0; x < max; x++ ) {
         for ( int y = 0; y < max; y++ ) {
+            textcolor(rand()%5+1);
             printf("%c  ", matriz[x][y]);
         }
         printf("\n");
