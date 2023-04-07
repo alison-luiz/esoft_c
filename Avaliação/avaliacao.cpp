@@ -82,7 +82,7 @@ void lerPalavras() {
 
 void inserirPalavra() {
 
-    int metodo = 2;//rand() % 2 + 1;
+    int metodo = rand() % 4 + 1;
 
     int linha = (rand() % 25) + 1;
     int coluna = (rand() % 25) + 1;
@@ -102,6 +102,22 @@ void inserirPalavra() {
         }
         for ( int x = 0; x < strlen(palavraSelecionada); x++ ) {
             matriz[linha][coluna - x] = palavraSelecionada[x];
+        }
+        break;
+    case 3:
+        if ( linha > strlen(palavraSelecionada) ) {
+            linha -= strlen(palavraSelecionada);
+        }
+        for ( int x = 0; x < strlen(palavraSelecionada); x++ ) {
+            matriz[linha + x][coluna] = palavraSelecionada[x];
+        }
+        break;
+    case 4:
+        if ( linha < strlen(palavraSelecionada) ) {
+            linha += (coluna - strlen(palavraSelecionada)) * -1;
+        }
+        for ( int x = 0; x < strlen(palavraSelecionada); x++ ) {
+            matriz[linha - x][coluna] = palavraSelecionada[x];
         }
         break;
     default:
