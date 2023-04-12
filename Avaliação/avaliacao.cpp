@@ -15,6 +15,7 @@
 #include <conio.c>
 #include <time.h>
 #include <ctype.h>
+#include <unistd.h>
 
 FILE *ArqPalavra;
 #define max 25
@@ -22,6 +23,7 @@ FILE *ArqPalavra;
 
 //========================================================================
 char matriz[max][max];
+int matrizControle[max][max];
 char palavras[maxSort][20];
 char palavraSelecionada[20];
 char palavra[20];
@@ -30,7 +32,7 @@ char palavra[20];
 bool openFile();
 void lerPalavras();
 void sortearMatriz();
-void exibirMatriz();
+void exibirMatrizCustom();
 void inserirPalavra();
 void perguntarPalavra();
 
@@ -48,9 +50,7 @@ int main() {
     lerPalavras();
     sortearMatriz();
     inserirPalavra();
-    exibirMatriz();
-
-    perguntarPalavra();
+    exibirMatrizCustom();
 
 }
 
@@ -77,7 +77,7 @@ void lerPalavras() {
     }
     fclose(ArqPalavra);
     strcpy(palavraSelecionada, palavras[rand()%maxSort]);
-    printf("Palavra selecionada: %s\n", palavraSelecionada);
+    //printf("Palavra selecionada: %s\n", palavraSelecionada);
 }
 
 void inserirPalavra() {
@@ -123,7 +123,7 @@ void inserirPalavra() {
     default:
         break;
     }
-    printf("Metodo: %d Linha: %d Coluna: %d\n\n\n", metodo, linha, coluna);
+    //printf("Metodo: %d Linha: %d Coluna: %d\n\n\n", metodo, linha, coluna);
 }
 
 void sortearMatriz() {
@@ -135,8 +135,10 @@ void sortearMatriz() {
         for ( int y = 0; y < max; y++ ) {
             if ( control == 1 || control == 3 ) {
                 matriz[x][y] = vog[rand()%5];
+                matrizControle[x][y] = 0;
             } else {
                 matriz[x][y] = con[rand()%21];
+                matrizControle[x][y] = 0;
             }
             
             control++;
@@ -147,21 +149,37 @@ void sortearMatriz() {
     }
 }
 
-void exibirMatriz() {
-    for ( int x = 0; x < max; x++ ) {
-        for ( int y = 0; y < max; y++ ) {
-            textcolor(rand()%5+1);
-            printf("%c  ", matriz[x][y]);
-        }
-        printf("\n");
+void exibirMatrizCustom() {
+
+    int count = 0;
+    int x, y;
+
+    do {
+    x = rand() % max + 1;
+    y = rand() % max + 1;
+
+    if (matrizControle[x][y] == 0) {
+        matrizControle[x][y] = 1;
+        gotoxy(x, y);
+        textcolor(rand()%5);
+        usleep(1000);
+        printf("%c", matriz[x][y]);
+        count++;
     }
+
+    } while ( count < max * max );
+
+    perguntarPalavra();
+
+
 }
 
 void perguntarPalavra() {
 
     do {
-    printf("\nDigite a palavra (max 20 caracteres): ");
-    gets(palavra);
+        gotoxy(26, 26);
+        printf("Digite a palavra (max 20 caracteres): ");
+        gets(palavra);
     } while ( strlen(palavra) <= 0 || strlen(palavra) >= 20 );
 
     for ( int x = 0; x < strlen(palavra); x++ ) {
