@@ -32,6 +32,7 @@ char palavra[20];
 bool openFile();
 void lerPalavras();
 void sortearMatriz();
+void exibirMatriz();
 void exibirMatrizCustom();
 void inserirPalavra();
 void perguntarPalavra();
@@ -50,7 +51,10 @@ int main() {
     lerPalavras();
     sortearMatriz();
     inserirPalavra();
+    //exibirMatriz();
     exibirMatrizCustom();
+
+    //perguntarPalavra();
 
 }
 
@@ -84,8 +88,8 @@ void inserirPalavra() {
 
     int metodo = rand() % 4 + 1;
 
-    int linha = (rand() % 25) + 1;
-    int coluna = (rand() % 25) + 1;
+    int linha = (rand() % 26);
+    int coluna = (rand() % 26);
 
     switch (metodo) {
     case 1:
@@ -149,35 +153,46 @@ void sortearMatriz() {
     }
 }
 
+void exibirMatriz() {
+    for ( int x = 0; x < max; x++ ) {
+        for ( int y = 0; y < max; y++ ) {
+            printf("%c  ", matriz[x][y]);
+        }
+        printf("\n");
+    }
+}
+
 void exibirMatrizCustom() {
 
     int count = 0;
     int x, y;
 
     do {
-    x = rand() % max + 1;
-    y = rand() % max + 1;
+    x = rand() % max;
+    y = rand() % max;
 
-    if (matrizControle[x][y] == 0) {
+    if ( matrizControle[x][y] == 0 ) {
+
         matrizControle[x][y] = 1;
-        gotoxy(x, y);
+
+        gotoxy(x*3, y);
         textcolor(rand()%5);
         usleep(1000);
         printf("%c", matriz[x][y]);
         count++;
+    
     }
 
     } while ( count < max * max );
 
+    gotoxy(2, 30);
     perguntarPalavra();
-
 
 }
 
 void perguntarPalavra() {
 
     do {
-        gotoxy(26, 26);
         printf("Digite a palavra (max 20 caracteres): ");
         gets(palavra);
     } while ( strlen(palavra) <= 0 || strlen(palavra) >= 20 );
@@ -200,6 +215,5 @@ void perguntarPalavra() {
     } else {
         printf("Voce errou!!");
     }
-
     //printf("contador: %d tam palavra: %d", count, strlen(palavra));
 }
