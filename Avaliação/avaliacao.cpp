@@ -167,6 +167,8 @@ void exibirMatrizCustom() {
     int count = 0;
     int x, y;
 
+    int tempX;
+
     do {
     x = rand() % max;
     y = rand() % max;
@@ -175,8 +177,8 @@ void exibirMatrizCustom() {
 
         matrizControle[x][y] = 1;
 
-        gotoxy(x*3, y);
-        textcolor(rand()%5);
+        gotoxy((x*3)+1, y);
+        textcolor(rand()%6+1);
         usleep(1000);
         printf("%c", matriz[x][y]);
         count++;
@@ -185,7 +187,6 @@ void exibirMatrizCustom() {
 
     } while ( count < max * max );
 
-    gotoxy(2, 30);
     perguntarPalavra();
 
 }
@@ -193,6 +194,7 @@ void exibirMatrizCustom() {
 void perguntarPalavra() {
 
     do {
+        gotoxy(55, 20);
         printf("Digite a palavra (max 20 caracteres): ");
         gets(palavra);
     } while ( strlen(palavra) <= 0 || strlen(palavra) >= 20 );
