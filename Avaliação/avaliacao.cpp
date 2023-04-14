@@ -81,7 +81,8 @@ void lerPalavras() {
     }
     fclose(ArqPalavra);
     strcpy(palavraSelecionada, palavras[rand()%maxSort]);
-    //printf("Palavra selecionada: %s\n", palavraSelecionada);
+    gotoxy(55, 7);
+    printf("Palavra selecionada: %s\n", palavraSelecionada);
 }
 
 void inserirPalavra() {
@@ -127,7 +128,8 @@ void inserirPalavra() {
     default:
         break;
     }
-    //printf("Metodo: %d Linha: %d Coluna: %d\n\n\n", metodo, linha, coluna);
+    gotoxy(55, 8);
+    printf("Metodo: %d Linha: %d Coluna: %d\n\n\n", metodo, linha, coluna);
 }
 
 void sortearMatriz() {
