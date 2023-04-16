@@ -36,6 +36,7 @@ void exibirMatriz();
 void exibirMatrizCustom();
 void inserirPalavra();
 void perguntarPalavra();
+bool verificarPalavraMatriz(const char *palavra);
 
 //========================================================================
 
@@ -51,10 +52,7 @@ int main() {
     lerPalavras();
     sortearMatriz();
     inserirPalavra();
-    //exibirMatriz();
     exibirMatrizCustom();
-
-    //perguntarPalavra();
 
 }
 
@@ -129,7 +127,7 @@ void inserirPalavra() {
         break;
     }
     gotoxy(55, 8);
-    printf("Metodo: %d Linha: %d Coluna: %d\n\n\n", metodo, linha, coluna);
+    printf("Metodo: %d Linha: %d Coluna: %d\n\n\n", metodo, coluna + 1, linha + 1);
 }
 
 void sortearMatriz() {
@@ -155,20 +153,10 @@ void sortearMatriz() {
     }
 }
 
-void exibirMatriz() {
-    for ( int x = 0; x < max; x++ ) {
-        for ( int y = 0; y < max; y++ ) {
-            printf("%c  ", matriz[x][y]);
-        }
-        printf("\n");
-    }
-}
-
 void exibirMatrizCustom() {
 
     int count = 0;
     int x, y;
-
     int tempX;
 
     do {
@@ -178,47 +166,91 @@ void exibirMatrizCustom() {
     textcolor((rand()%14)+1);
 
     if ( matrizControle[x][y] == 0 ) {
-
         matrizControle[x][y] = 1;
-
         gotoxy((x+1)*2, y+1);
         usleep(1000);
         printf("%c", matriz[x][y]);
         count++;
-    
     }
-
     } while ( count < max * max );
 
     perguntarPalavra();
 
 }
 
+
 void perguntarPalavra() {
+
+    bool palavraEncontrada;
 
     do {
         gotoxy(55, 10);
+        printf("                                                              ");
+        gotoxy(55, 10);
+        textcolor(WHITE);
         printf("Digite a palavra: ");
+        textcolor(GREEN);
         gets(palavra);
-    } while ( strlen(palavra) <= 0 || strlen(palavra) >= 20 );
+    } while (strlen(palavra) <= 0 || strlen(palavra) >= 20);
 
-    for ( int x = 0; x < strlen(palavra); x++ ) {
+    for (int x = 0; x < strlen(palavra); x++) {
         palavra[x] = toupper(palavra[x]);
     }
 
-    int count = 0;
-    for ( int x = 0; x < strlen(palavra); x++ ) {
-        if ( palavra[x] != palavraSelecionada[x] ) {
-            count--;
-        } else {
-            count++;
+    palavraEncontrada = verificarPalavraMatriz(palavra);
+
+    if (palavraEncontrada) {
+        gotoxy(55, 10);
+        printf("                                                              ");
+        gotoxy(55, 10);
+        textcolor(GREEN);
+        printf("Palavra encontrada!");
+        usleep(900000);
+        perguntarPalavra();
+    } else {
+        gotoxy(55, 10);
+        printf("                                                              ");
+        gotoxy(55, 10);
+        textcolor(RED);
+        printf("Palavra nao encontrada!");
+        usleep(900000);
+        perguntarPalavra();
+    }
+}
+
+bool verificarPalavraMatriz(const char *palavra) {
+    int tamanhoPalavra = strlen(palavra);
+
+    for (int linha = 0; linha < max; linha++) {
+        for (int coluna = 0; coluna < max; coluna++) {
+            for (int direcao = 0; direcao < 4; direcao++) {
+                int proxLinha = linha;
+                int proxColuna = coluna;
+                int control;
+
+                for (control = 0; control < tamanhoPalavra; control++) {
+                    if (proxLinha < 0 || proxLinha >= max || proxColuna < 0 || proxColuna >= max) {
+                        break;
+                    }
+
+                    if (matriz[proxLinha][proxColuna] != palavra[control]) {
+                        break;
+                    }
+
+                    switch (direcao) {
+                        case 0: proxLinha++; break;
+                        case 1: proxLinha--; break;
+                        case 2: proxColuna++; break;
+                        case 3: proxColuna--; break;
+                    }
+                }
+
+                if (control == tamanhoPalavra) {
+                    return true;
+                }
+            }
         }
     }
 
-    if ( count == strlen(palavra) ) {
-        printf("Voce acertou!!");
-    } else {
-        printf("Voce errou!!");
-    }
-    //printf("contador: %d tam palavra: %d", count, strlen(palavra));
+    return false;
 }
